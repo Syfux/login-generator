@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 /**
  * Classe representant un generateur de login
  */
-public class LoginGenerator {
+class LoginGenerator {
 
     private LoginService loginService;
 
@@ -14,7 +14,7 @@ public class LoginGenerator {
      * Construit un login generator
      * @param loginService le service de login
      */
-    public LoginGenerator(LoginService loginService) {
+    LoginGenerator(LoginService loginService) {
         this.loginService = loginService;
     }
 
@@ -33,12 +33,15 @@ public class LoginGenerator {
      * @param prenom le prenom
      * @return le login genere
      */
-    public String generateLoginForNomAndPrenom(String nom, String prenom) {
+    String generateLoginForNomAndPrenom(String nom, String prenom) {
         String p = deAccent(prenom.substring(0,1).toUpperCase());
         String n = deAccent(nom.substring(0,3).toUpperCase());
         String login = p+n ;
         if (loginService.loginExists(login)) {
-            login = login + "1" ;
+            int i = 1;
+            while(loginService.loginExists(login + i))
+                i++;
+            login = login + i ;
         }
         loginService.addLogin(login);
         return login;

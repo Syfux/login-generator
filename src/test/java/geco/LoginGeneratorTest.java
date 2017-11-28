@@ -23,6 +23,7 @@ public class LoginGeneratorTest {
 
         assertEquals("JROL2", this.loginGenerator.generateLoginForNomAndPrenom("Rolling", "Jean"));
         assertEquals("JROL3", this.loginGenerator.generateLoginForNomAndPrenom("Rolling", "Jean"));
+        assertEquals("PDU", this.loginGenerator.generateLoginForNomAndPrenom("Du", "Paul"));
     }
 
 }
